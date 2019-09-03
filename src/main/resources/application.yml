@@ -1,0 +1,19 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: shiro
+  datasource:
+    url: jdbc:oracle:thin:@10.1.167.175:1532/HROSDEV
+    username: interview_dev
+    password: KQGI6wK9HLPh
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    database: oracle
+    showSql: true
+    hibernate:
+      ddlAuto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+        format_sql: true
