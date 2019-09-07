@@ -33,6 +33,25 @@ public class CustomRealm extends AuthorizingRealm {
         info.setStringPermissions(stringSet);
         return info;
     }
+    /**
+     * 授权
+     */
+//    @Override
+//    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+//        String userName=(String) SecurityUtils.getSubject().getPrincipal();
+//        SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
+//        Set<String> roles=new HashSet<String>();
+//        List<Role> rolesByUserName = roleDao.getRolesByUserName(userName);
+//        for(Role role:rolesByUserName) {
+//            roles.add(role.getRoleName());
+//        }
+//        List<Permission> permissionsByUserName = permissionDao.getPermissionsByUserName(userName);
+//        for(Permission permission:permissionsByUserName) {
+//            info.addStringPermission(permission.getPermissionName());
+//        }
+//        info.setRoles(roles);
+//        return info;
+//    }
 
     /**
      * 这里可以注入userService,为了方便演示，我就写死了帐号了密码
@@ -43,13 +62,16 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("-------身份认证方法--------");
+        //登录页面的用户名
         String userName = (String) authenticationToken.getPrincipal();
+        //登录页面的密码
         String userPwd = new String((char[]) authenticationToken.getCredentials());
-        String s1 = MD5Pwd("123", "123");
+
+        //String s1 = MD5Pwd("123", "123");
 
         //根据用户名从数据库获取密码
         String password = "f5a7977a18cabb413b540b9166435f26";
-        String s = MD5Pwd(userName, userPwd);
+
         if (userName == null) {
             throw new AccountException("用户名不正确");
         }
