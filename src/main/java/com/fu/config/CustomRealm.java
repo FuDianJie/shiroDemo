@@ -87,4 +87,9 @@ public class CustomRealm extends AuthorizingRealm {
         return md5Pwd;
     }
 
+    public static void main(String[] args) {
+        String s = MD5Pwd("123", "123");
+        System.out.println("s = " + s);
+    }
+
 }
